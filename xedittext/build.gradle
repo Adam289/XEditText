@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+def VERSION_NAME = "1.0.0"
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 29
+        versionCode 28
+        versionName VERSION_NAME
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compileOnly 'androidx.appcompat:appcompat:1.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = 'adam289'
+    groupId = 'com.adam.repo'
+    artifactId = 'xedittext'
+    publishVersion = VERSION_NAME
+    desc = 'A useful android custom edittext widget.'
+    website = 'https://github.com/adam289/XEditText'
+}
